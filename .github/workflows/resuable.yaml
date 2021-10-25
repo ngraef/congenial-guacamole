@@ -1,0 +1,21 @@
+name: Reusable workflow
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: false
+        type: string
+    secrets:
+      token:
+        required: false
+
+jobs:
+  example:
+    name: Use input and secret
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          INPUT: ${{ inputs.environment }}
+          TOKEN: ${{ secrets.token }}
+        run: echo "$INPUT"
